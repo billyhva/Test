@@ -7,7 +7,7 @@
 
 # In[1]:
 
-
+import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt 
@@ -175,12 +175,12 @@ float_annotation = {'xref': 'paper', 'yref': 'paper',
                     }
 
 
-fig.data[1].visible=False
-fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
-fig.update_layout(xaxis_title='Time in hour',
+st.plotly_graph(fig).data[1].visible=False
+st.plotly_graph(fig).update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
+st.plotly_graph(fig).update_layout(xaxis_title='Time in hour',
                   yaxis_title="Number of observations")
-fig.update_layout({'annotations': [float_annotation]})
-fig.show()
+st.plotly_graph(fig).update_layout({'annotations': [float_annotation]})
+st.plotly_graph(fig).show()
 
 
 # In[23]:
@@ -202,9 +202,9 @@ hist_data = [group_1, group_2]
 group_labels = ['Connected Time', 'Charge Time']
 
 fig = ff.create_distplot(hist_data, group_labels, colors=['blue','red'])
-fig.update_layout({'title': {'text':'Distplot of Charge and Connecting Time'},
+st.plotly_graph(fig).update_layout({'title': {'text':'Distplot of Charge and Connecting Time'},
                    'xaxis': {'title': {'text':'Time in hours'}}})
-fig.show()
+st.plotly_graph(fig).show()
 
 
 # In[25]:
@@ -245,16 +245,16 @@ my_buttons = [{'label': 'Connected Time', 'method': 'update',
     'args': [{'visible': [True, True, True]},
             {'title': 'Combined'}]}]
 
-fig.update_layout({
+st.plotly_graph(fig).update_layout({
     'updatemenus': [{
       'type':'buttons','direction': 'down',
       'x': 1.3,'y': 0.5,
       'showactive': True, 'active': 0,
       'buttons': my_buttons}]})    
-fig.update_layout(xaxis_title='Time in hour',
+st.plotly_graph(fig).update_layout(xaxis_title='Time in hour',
                   yaxis_title="Total energy used in Wh")
-fig.data[1].visible=False
-fig.show()    
+st.plotly_graph(fig).data[1].visible=False
+st.plotly_graph(fig).show()    
 
 
 # - Legenda voor combined
@@ -367,10 +367,10 @@ dropdown_buttons = [
             {'title': 'Usage Cost of Charging Station'}]}]
 
 
-fig.data[1].visible=False
-fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
-fig.update_xaxes(tickangle = -45)
-fig.show()
+st.plotly_graph(fig).data[1].visible=False
+st.plotly_graph(fig).update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
+st.plotly_graph(fig).update_xaxes(tickangle = -45)
+st.plotly_graph(fig).show()
 
 
 # In[40]:
@@ -401,7 +401,7 @@ df['Provincie'] = df['AddressInfo.StateOrProvince'].replace(mapping)
 fig = px.histogram(df, x='Provincie', 
                    title='Number of charging stations per province',
                   labels=dict(x='Province')).update_xaxes(categoryorder='total descending')
-fig.show()
+st.plotly_graph(fig).show()
 
 
 # In[ ]:
@@ -649,7 +649,7 @@ df1['CarBrand'].unique()
 fig = px.histogram(df1, x='CarBrand', 
                    title='Number of cars per brand',
                    labels={'CarBrand':'Brand of the car'}).update_xaxes(categoryorder='total descending')
-fig.show()
+st.plotly_graph(fig).show()
 
 
 # In[ ]:
@@ -749,7 +749,7 @@ Tesla.head()
 
 fig = px.histogram(Tesla, x='Type', 
                    title='The different types of Tesla cars').update_xaxes(categoryorder='total descending')
-fig.show()
+st.plotly_graph(fig).show()
 
 
 # In[ ]:
@@ -767,12 +767,12 @@ fig = px.box(data_frame=Tesla, x=Tesla['Type'], y='Catalogusprijs',
              color_discrete_map=color_map, 
              category_orders={'Type':['MODEL 3', 'MODEL S', 'MODEL X', 'MODEL Y', 'ROADSTER']},
              labels={"Type":"Type"})
-fig.update_xaxes(title_text = 'Type Tesla')
-fig.update_yaxes(title_text = 'Price')
-fig.update_layout(title_text = "Boxplots of price per type Tesla")
-fig.update_traces(width=0.3)
+st.plotly_graph(fig).update_xaxes(title_text = 'Type Tesla')
+st.plotly_graph(fig).update_yaxes(title_text = 'Price')
+st.plotly_graph(fig).update_layout(title_text = "Boxplots of price per type Tesla")
+st.plotly_graph(fig).update_traces(width=0.3)
     
-fig.show()
+st.plotly_graph(fig).show()
 
 
 # In[ ]:
